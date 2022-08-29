@@ -1,8 +1,26 @@
-import React from "react";
+import { useState } from "react";
+import Page from "./Page";
+import Axios from "axios";
 
 const HomeGuest = () => {
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await Axios.post("http://localhost:8080/register", {
+        username,
+        email,
+        password,
+      });
+      console.log("reg user successfully");
+    } catch (e) {
+      console.log("there was an error");
+    }
+  };
   return (
-    <div className="container py-md-5">
+    <Page title="Welcome!" wide={true}>
       <div className="row align-items-center">
         <div className="col-lg-7 py-3 py-md-5">
           <h1 className="display-3">Remember Writing?</h1>
@@ -14,12 +32,13 @@ const HomeGuest = () => {
           </p>
         </div>
         <div className="col-lg-5 pl-lg-5 pb-3 py-lg-5">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="username-register" className="text-muted mb-1">
                 <small>Username</small>
               </label>
               <input
+                onChange={(e) => setUsername(e.target.value)}
                 id="username-register"
                 name="username"
                 className="form-control"
@@ -33,6 +52,7 @@ const HomeGuest = () => {
                 <small>Email</small>
               </label>
               <input
+                onChange={(e) => setEmail(e.target.value)}
                 id="email-register"
                 name="email"
                 className="form-control"
@@ -46,6 +66,7 @@ const HomeGuest = () => {
                 <small>Password</small>
               </label>
               <input
+                onChange={(e) => setPassword(e.target.value)}
                 id="password-register"
                 name="password"
                 className="form-control"
@@ -62,7 +83,7 @@ const HomeGuest = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Page>
   );
 };
 
