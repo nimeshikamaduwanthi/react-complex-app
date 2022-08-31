@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import CreatePost from "./components/CreatePost";
 import ViewSingalePost from "./components/ViewSingalePost";
 import FlashMessages from "./components/FlashMessages";
+import ExampleContext from "./context/ExampleContext";
 
 Axios.defaults.baseURL = "http://localhost:8080";
 
@@ -26,21 +27,20 @@ function App() {
     setFlashMessages((prev) => prev.concat(msg));
   };
   return (
-    <BrowserRouter>
-      <FlashMessages messages={flashMessages} />
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      <Routes>
-        <Route path="/" element={loggedIn ? <Home /> : <HomeGuest />} />
-        <Route path="/post/:id" element={<ViewSingalePost />} />
-        <Route
-          path="/create-post"
-          element={<CreatePost addFlashMessage={addFlashMessage} />}
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="/terms" element={<Terms />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <ExampleContext.Provider value={{ addFlashMessage, setLoggedIn }}>
+      <BrowserRouter>
+        <FlashMessages messages={flashMessages} />
+        <Header loggedIn={loggedIn} />
+        <Routes>
+          <Route path="/" element={loggedIn ? <Home /> : <HomeGuest />} />
+          <Route path="/post/:id" element={<ViewSingalePost />} />
+          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/terms" element={<Terms />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </ExampleContext.Provider>
   );
 }
 
