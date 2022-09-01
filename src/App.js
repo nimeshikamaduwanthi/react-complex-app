@@ -16,7 +16,7 @@ import ExampleContext from "./context/ExampleContext";
 
 Axios.defaults.baseURL = "http://localhost:8080";
 
-function App() {
+const App = () => {
   const [loggedIn, setLoggedIn] = useState(
     Boolean(localStorage.getItem("complexappToken"))
   );
@@ -42,6 +42,6 @@ function App() {
       </BrowserRouter>
     </ExampleContext.Provider>
   );
-}
+};
 
 export default App;
