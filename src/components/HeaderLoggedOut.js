@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import Axios from "axios";
-import ExampleContext from "../context/ExampleContext";
+import DispatchContext from "../context/DispatchContext";
 
 const HeaderLoggedOut = () => {
+  const appDispatch = useContext(DispatchContext);
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const { setLoggedIn } = useContext(ExampleContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,10 +15,7 @@ const HeaderLoggedOut = () => {
         password,
       });
       console.log(response.data);
-      localStorage.setItem("complexappToken", response.data.token);
-      localStorage.setItem("complexappUsername", response.data.username);
-      localStorage.setItem("complexappAvatar", response.data.avatar);
-      setLoggedIn(true);
+      appDispatch({ type: "login", data: response.data });
     } catch {
       console.log("there was a problem");
     }
