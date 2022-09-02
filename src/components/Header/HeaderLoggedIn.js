@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import DispatchContext from "../context/DispatchContext";
-import StateContext from "../context/StateContext";
+import DispatchContext from "../../context/DispatchContext";
+import StateContext from "../../context/StateContext";
 
 const HeaderLoggedIn = () => {
   const appDispatch = useContext(DispatchContext);
@@ -18,9 +18,9 @@ const HeaderLoggedIn = () => {
         <i className="fas fa-comment"></i>
         <span className="chat-count-badge text-white"> </span>
       </span>
-      <a href="#" className="mr-2">
+      <Link to={`/profile/${appState.user.username}`} clLinkssName="mr-2">
         <img className="small-header-avatar" src={appState.user.avatar} />
-      </a>
+      </Link>
       <Link className="btn btn-sm btn-success mr-2" to="/create-post">
         Create Post
       </Link>

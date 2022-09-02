@@ -1,4 +1,4 @@
-import Page from "../pages/Page";
+import Page from "../../pages/Page";
 
 const ViewSingalePost = () => (
   <Page title="Fake title">
