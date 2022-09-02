@@ -4,18 +4,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useImmerReducer } from "use-immer";
 import Axios from "axios";
 
-import Header from "../src/components/Header";
+import Header from "./components/Header/Header";
 import HomeGuest from "./pages/HomeGuest";
-import Footer from "../src/components/Footer";
+import Footer from "./components/Footer/Footer";
 import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Home from "./pages/Home";
-import CreatePost from "./components/CreatePost";
-import ViewSingalePost from "./components/ViewSingalePost";
-import FlashMessages from "./components/FlashMessages";
+import CreatePost from "./components/Post/CreatePost";
+import ViewSingalePost from "./components/Post/ViewSingalePost";
+import FlashMessages from "./components/Messages/FlashMessages";
 import DispatchContext from "./context/DispatchContext";
 import StateContext from "./context/StateContext";
-import { act } from "react-dom/test-utils";
+import Profile from "./components/Profile/Profile";
 
 Axios.defaults.baseURL = "http://localhost:8080";
 
@@ -66,6 +66,7 @@ const App = () => {
           <FlashMessages messages={state.flashMessages} />
           <Header />
           <Routes>
+            <Route path="/profile/:username/*" element={<Profile />} />
             <Route
               path="/"
               element={state.loggedIn ? <Home /> : <HomeGuest />}
