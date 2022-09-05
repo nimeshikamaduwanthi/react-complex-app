@@ -16,6 +16,8 @@ import FlashMessages from "./components/Messages/FlashMessages";
 import DispatchContext from "./context/DispatchContext";
 import StateContext from "./context/StateContext";
 import Profile from "./components/Profile/Profile";
+import EditPost from "./components/Post/EditPost";
+import NotFound from "./components/NotFound/NotFound";
 
 Axios.defaults.baseURL = "http://localhost:8080";
 
@@ -72,9 +74,11 @@ const App = () => {
               element={state.loggedIn ? <Home /> : <HomeGuest />}
             />
             <Route path="/post/:id" element={<ViewSingalePost />} />
+            <Route path="/post/:id/edit" element={<EditPost />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/about" element={<About />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </BrowserRouter>
