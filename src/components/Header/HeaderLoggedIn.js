@@ -18,7 +18,7 @@ const HeaderLoggedIn = () => {
         <i className="fas fa-comment"></i>
         <span className="chat-count-badge text-white"> </span>
       </span>
-      <Link to={`/profile/${appState.user.username}`} clLinkssName="mr-2">
+      <Link to={`/profile/${appState.user.username}`} className="mr-2">
         <img className="small-header-avatar" src={appState.user.avatar} />
       </Link>
       <Link className="btn btn-sm btn-success mr-2" to="/create-post">
