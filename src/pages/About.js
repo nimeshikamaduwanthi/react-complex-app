@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import Page from "./Page";
 
 const About = () => (

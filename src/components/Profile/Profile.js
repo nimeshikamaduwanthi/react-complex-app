@@ -27,11 +27,15 @@ const Profile = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [appState.user.token, username]);
   return (
     <Page title="profile screen">
       <h2>
-        <img className="avatar-small" src={profileData.profileAvatar} />{" "}
+        <img
+          className="avatar-small"
+          src={profileData.profileAvatar}
+          alt="profile-avatar"
+        />{" "}
         {profileData.profileUsername}
         <button className="btn btn-primary btn-sm ml-2">
           Follow <i className="fas fa-user-plus"></i>
