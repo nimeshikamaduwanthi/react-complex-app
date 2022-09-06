@@ -19,7 +19,7 @@ const ProfilePosts = () => {
       }
     };
     fetchPosts();
-  }, []);
+  });
   if (isLoading) return <LoadingDotsIcons />;
   return (
     <>
@@ -35,7 +35,11 @@ const ProfilePosts = () => {
               to={`/post/${post._id}`}
               className="list-group-item list-group-item-action"
             >
-              <img className="avatar-tiny" src={post.author.avatar} />{" "}
+              <img
+                className="avatar-tiny"
+                src={post.author.avatar}
+                alt="avatar"
+              />{" "}
               <strong>{post.title}</strong>{" "}
               <span className="text-muted small">on {dataFormatted} </span>
             </Link>
