@@ -1,13 +1,15 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DispatchContext from "../../context/DispatchContext";
 import StateContext from "../../context/StateContext";
 
 const HeaderLoggedIn = () => {
+  const navigate = useNavigate();
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
   const handleLogout = () => {
     appDispatch({ type: "logout" });
+    navigate("/");
   };
 
   const handleSearchIcon = (e) => {
