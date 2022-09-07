@@ -8,7 +8,6 @@ const Post = ({ post }) => {
   const dataFormatted = `${
     date.getMonth() + 1
   }/${date.getDate()}/${date.getFullYear()}`;
-  console.log(post);
   return (
     <Link
       onClick={() => appDispatch({ type: "closeSearch" })}
