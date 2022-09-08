@@ -1,13 +1,15 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DispatchContext from "../../context/DispatchContext";
 import StateContext from "../../context/StateContext";
 
 const HeaderLoggedIn = () => {
+  const navigate = useNavigate();
   const appDispatch = useContext(DispatchContext);
   const appState = useContext(StateContext);
   const handleLogout = () => {
     appDispatch({ type: "logout" });
+    navigate("/");
   };
 
   const handleSearchIcon = (e) => {
@@ -26,7 +28,11 @@ const HeaderLoggedIn = () => {
       >
         <i className="fas fa-search"></i>
       </a>{" "}
-      <span className="mr-2 header-chat-icon text-white" title="Chat">
+      <span
+        onClick={() => appDispatch({ type: "toggleChat" })}
+        className="mr-2 header-chat-icon text-white"
+        title="Chat"
+      >
         <i className="fas fa-comment"></i>
         <span className="chat-count-badge text-white"> </span>
       </span>{" "}

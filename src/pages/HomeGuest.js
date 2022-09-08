@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Page from "./Page";
 import Axios from "axios";
 
 const HomeGuest = () => {
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -14,7 +16,11 @@ const HomeGuest = () => {
         email,
         password,
       });
-      console.log("reg user successfully");
+      console.log("im here");
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      // navigate("/");
     } catch (e) {
       console.log("there was an error");
     }
@@ -40,6 +46,7 @@ const HomeGuest = () => {
               <input
                 onChange={(e) => setUsername(e.target.value)}
                 id="username-register"
+                value={username}
                 name="username"
                 className="form-control"
                 type="text"
@@ -53,6 +60,7 @@ const HomeGuest = () => {
               </label>
               <input
                 onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 id="email-register"
                 name="email"
                 className="form-control"
@@ -67,6 +75,7 @@ const HomeGuest = () => {
               </label>
               <input
                 onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 id="password-register"
                 name="password"
                 className="form-control"

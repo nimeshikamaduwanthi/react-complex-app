@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import DispatchContext from "../../context/DispatchContext";
 import { useImmer } from "use-immer";
 import Axios from "axios";
+import Post from "../Post/Post";
 
 const Search = () => {
   const appDispatch = useContext(DispatchContext);
@@ -42,14 +43,11 @@ const Search = () => {
 
   useEffect(() => {
     if (state.requestCount && state.searchTerm) {
-      console.log(state);
       const fetchResults = async () => {
         try {
-          const response = await Axios.post(
-            "/search",
-            { searchTerm: state.searchTerm }
-            // { cancelToken: controller.token }
-          );
+          const response = await Axios.post("/search", {
+            searchTerm: state.searchTerm,
+          });
           setState((draft) => {
             draft.results = response.data;
             draft.show = "results";
@@ -124,27 +122,12 @@ const Search = () => {
                   found)
                 </div>
                 {state.results.map((post) => {
-                  const date = new Date(post.createdDate);
-                  const dataFormatted = `${
-                    date.getMonth() + 1
-                  }/${date.getDate()}/${date.getFullYear()}`;
                   return (
-                    <Link
-                      onClick={() => appDispatch({ type: "closeSearch" })}
+                    <Post
+                      post={post}
                       key={post._id}
-                      to={`/post/${post._id}`}
-                      className="list-group-item list-group-item-action"
-                    >
-                      <img
-                        className="avatar-tiny"
-                        src={post.author.avatar}
-                        alt="avatar"
-                      />{" "}
-                      <strong>{post.title}</strong>{" "}
-                      <span className="text-muted small">
-                        by {post.author.username} on {dataFormatted}{" "}
-                      </span>
-                    </Link>
+                      onClick={() => appDispatch({ type: "closeSearch" })}
+                    />
                   );
                 })}
               </div>
