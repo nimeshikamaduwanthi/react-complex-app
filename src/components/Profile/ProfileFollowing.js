@@ -38,12 +38,12 @@ const ProfileFollowing = () => {
             </Link>
           );
         })}
-        {posts.length == 0 && appState.user.username == username && (
+        {posts.length === 0 && appState.user.username === username && (
           <p className="lead text-muted text-center">
             You aren&rsquo;t following anyone yet.
           </p>
         )}
-        {posts.length == 0 && appState.user.username != username && (
+        {posts.length === 0 && appState.user.username !== username && (
           <p className="lead text-muted text-center">
             {username} isn&rsquo;t following anyone yet.
           </p>

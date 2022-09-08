@@ -1,5 +1,4 @@
 import { useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 import DispatchContext from "../../context/DispatchContext";
 import { useImmer } from "use-immer";
 import Axios from "axios";
@@ -62,7 +61,7 @@ const Search = () => {
   }, [state.requestCount]);
 
   const searchKeyPressHandler = (e) => {
-    if (e.keyCode == 27) {
+    if (e.keyCode === 27) {
       appDispatch({ type: "closeSearch" });
     }
   };
@@ -103,13 +102,13 @@ const Search = () => {
           <div
             className={
               "circle-loader " +
-              (state.show == "loading" ? "circle-loader--visible" : "")
+              (state.show === "loading" ? "circle-loader--visible" : "")
             }
           ></div>
           <div
             className={
               "live-search-results " +
-              (state.show == "results"
+              (state.show === "results"
                 ? "live-search-results live-search-results--visible"
                 : "")
             }
