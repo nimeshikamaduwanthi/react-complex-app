@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import Page from "./Page";
-import { Link } from "react-router-dom";
 import StateContext from "../context/StateContext";
 import { useImmer } from "use-immer";
 import LoadingDotsIcons from "../components/Icon/LoadingDotsIcons";
@@ -50,7 +49,7 @@ const Home = () => {
           </div>
         </>
       )}
-      {state.feed.length == 0 && (
+      {state.feed.length === 0 && (
         <>
           <h2 className="text-center">
             Hello <strong>{appState.user.username}</strong>, your feed is empty.

@@ -9,6 +9,10 @@ const HeaderLoggedIn = () => {
   const appState = useContext(StateContext);
   const handleLogout = () => {
     appDispatch({ type: "logout" });
+    appDispatch({
+      type: "flashMessage",
+      value: "You have successfully logged out.",
+    });
     navigate("/");
   };
 

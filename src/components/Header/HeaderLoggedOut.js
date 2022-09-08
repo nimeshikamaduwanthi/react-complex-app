@@ -14,10 +14,16 @@ const HeaderLoggedOut = () => {
         username,
         password,
       });
-      console.log(response.data);
       appDispatch({ type: "login", data: response.data });
+      appDispatch({
+        type: "flashMessage",
+        value: "You have successfully logged in.",
+      });
     } catch {
-      console.log("there was a problem");
+      appDispatch({
+        type: "flashMessage",
+        value: "Invalid username / password.",
+      });
     }
   };
   return (
